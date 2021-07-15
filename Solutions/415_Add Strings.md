@@ -1,4 +1,5 @@
-# test
+这题模仿的就是小学学习的竖式计算。
+每一列的结果等于x1 + x2 + carry
 ```
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
