@@ -1,5 +1,5 @@
 ## 解法1： BFS
-
+BFS要比DFS好，因为DFS为了得到答案，必须遍历整棵树。而BFS走到需要的那一层就可以停止。
 ```
 """
 Definition of TreeNode:
