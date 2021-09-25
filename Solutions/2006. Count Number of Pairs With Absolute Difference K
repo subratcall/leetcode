@@ -1,3 +1,4 @@
+这题有个条件，是k>0。如果k=0会麻烦一点。
 ```
 class Solution:
     def countKDifference(self, nums: List[int], k: int) -> int:
