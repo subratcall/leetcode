@@ -1,3 +1,7 @@
+## 解法： 分治 + Merge Sort
+把A分成两半，先求左半边内部的，和右半边内部的结果，然后再加上两个数分别在左右两边的。
+
+对于左边的A[left]来说，如果它能和右边的A[right]构成pair，那么left->mid的这些数都可以。（idx都比right小，值都比A[right]大）
 ```
 class Solution:
     """
