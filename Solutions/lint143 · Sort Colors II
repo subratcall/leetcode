@@ -1,0 +1,21 @@
+```
+class Solution:
+    """
+    @param colors: A list of integer
+    @param k: An integer
+    @return: nothing
+    """
+    def sortColors2(self, nums, k):
+        # write your code here
+        counter = collections.Counter(nums)
+        idx = 0
+        tag = 1
+        to_visit = counter[1]
+        while idx < len(nums):
+            if idx < to_visit:
+                nums[idx] = tag
+                idx += 1
+            else:
+                tag += 1
+                to_visit += counter[tag]
+```
