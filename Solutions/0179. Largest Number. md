@@ -1,5 +1,4 @@
-
-
+## 装逼版写法：
 ```
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
