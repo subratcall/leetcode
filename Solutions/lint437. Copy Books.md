@@ -1,0 +1,50 @@
+## 解法1: 二分
+TC：O(nlog(sum)) SC:O(1)
+
+解法非常巧妙。反向思考，确定答案。
+
+题目的特点是，可能的答案是xxxxxoooooo这样的特点。即起初全不行，从某一处开始，全可以。
+
+那么就可以先确定答案的总范围。本题的话，最短时间一定是大于最厚的那本书需要的时间，最长时间是一个人抄所有书的时间。这里实际可以粗放，写成0～max_int，因为后面是用二分，区别不大。
+
+然后就二分取中点，看中点的这个时间要求下，能不能用k个人完成任务。如果能，那说明是时间可以进一步缩小；如果不能，时间则应该更多一些。
+
+现在问题转换为，给定允许的时间，判断能不能用k个人就完成。这里好像有点贪心的思想，每将要超过时间，我就多分配一个人。但是要注意，如果某一本书页书已经超过时间，应该直接返回False。
+
+```
+class Solution:
+    """
+    @param pages: an array of integers
+    @param k: An integer
+    @return: an integer
+    """
+    def copyBooks(self, pages, k):
+        # write your code here
+        if not pages:
+            return 0
+        
+        min_time, max_time = min(pages), sum(pages)
+
+        while min_time + 1 < max_time:
+            mid = (min_time + max_time) // 2
+            if self.checkTime(pages, mid, k):
+                max_time = mid
+            else:
+                min_time = mid
+        return min_time if self.checkTime(pages, min_time, k) else max_time
+
+    def checkTime(self, pages, time, k):
+            count = 0
+            # 这个设置比较巧妙，处理了第一本书的问题
+            lastCopied = time
+            for page in pages:
+                if page > time:
+                    return False
+                if lastCopied + page > time:
+                    count += 1
+                    lastCopied = page
+                else:
+                    lastCopied += page
+            return True if count <= k else False
+                
+```
