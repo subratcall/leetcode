@@ -1,6 +1,10 @@
 https://www.youtube.com/watch?v=3Q_oYDQ2whs
 ![image](https://user-images.githubusercontent.com/43141076/137413830-bd0233a8-1afa-4656-bce8-16408dd30346.png)
 
+在merge meetings之后，需要把bounds和meeting取差集。
+
+还有一种办法，是用在首尾插入会议，作为bound。
+
 ```
 def time_to_int(times):
     for i in range(len(times)):
