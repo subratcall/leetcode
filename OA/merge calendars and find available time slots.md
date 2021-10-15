@@ -23,4 +23,66 @@ https://www.youtube.com/watch?v=3Q_oYDQ2whs
 代码如下：
 
 
-### 
+### helper functions
+```
+def time_to_int(times):
+    for i in range(len(times)):
+        for j in range(len(times[i])):
+            hour, minute = times[i][j].split(":")
+            times[i][j] = 60 * int(hour) + int(minute)
+            
+def int_to_time(times):
+    for i in range(len(times)):
+        for j in range(len(times[i])):            
+            hour, minute = (times[i][j] // 60), times[i][j] % 60
+            hour = str(hour) if hour else "00"
+            minute = str(minute) if minute else "00"
+            times[i][j] = hour + ":" + minute
+            
+def work_time_to_meeting(time):
+    meetings = []
+    meetings.append(["00:00", time[0]])
+    meetings.append([time[1], "24:00"])
+    return meetings
+            
+def merge_meeting(meetings):
+    sorted_meetings = sorted(meetings, key=lambda x: x[0])
+    res = []
+    for meeting in sorted_meetings:
+        if not res or meeting[0] > res[-1][1]:
+            res.append(meeting)
+        else:
+            res[-1][1] = max(res[-1][1], meeting[1])
+    return res
+```
+
+### main function
+```
+def find_free_time(cal1, working1, cal2, working2):
+    booked1 = work_time_to_meeting(working1)
+    booked2 = work_time_to_meeting(working2)
+    meetings = cal1 + cal2 + booked1 + booked2
+    time_to_int(meetings)
+    
+    merged_meeting = merge_meeting(meetings)
+    
+    res = []
+    
+    for i in range(1, len(merged_meeting)):
+        start = merged_meeting[i-1][1]
+        end = merged_meeting[i][0]
+        res.append([start, end])
+    
+    int_to_time(res)
+    return res
+```
+
+### test
+```
+calendar1 = [['9:00','10:30'],['12:00','13:00'],['16:00','18:00']]
+working_time1 = ['9:00', '20:00']
+calendar2 = [['10:00','11:30'],['12:30','14:30'],['14:30','15:00'],['16:00','17:00']]
+working_time2 = ['10:00', '18:30']
+
+find_free_time(calendar1, working_time1, calendar2, working_time2)
+```
