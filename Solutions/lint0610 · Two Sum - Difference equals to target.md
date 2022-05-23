@@ -1,3 +1,5 @@
+## Tags
+2_classic, Two pointers(-->)
 ## Summary
 - When we need to look for something, binary search on a sorted array is a substitution of hashmap. It takes a little longer time, and uses O(1) space.
 
