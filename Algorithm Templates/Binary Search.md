@@ -1,11 +1,11 @@
-```
+```py
 def binarySearch(nums, target):
     if not nums:
         return -1
         
-    start, end = 0, len(nums) - 1
+    left, right = 0, len(nums) - 1
     
-    # 终止条件：相邻的时候就停止
+    # keep doing binary search when the left not close to the right
     while left + 1 < right:
         mid = (left + right) // 2
         if nums[mid] < target:
@@ -13,15 +13,17 @@ def binarySearch(nums, target):
         elif nums[mid] > target:
             right = mid
         else:
-            #这里需要根据要求，看移动left还是right
+            #move left or right to the mid, based on which half you wanna continue to search
             right = mid
     
-    #最后指针停在相邻位置，分别检查哪个是答案
-    #如果是找左边界，就先看left。否则就先看right
-    if nums[start] == target:
-        return start
-    if nums[end] == target:
-        return end
+    # in the end, the two pointers will sit besides each other
+    # need to check the numbers they're pointing to
+    # if looking for the left boundary, then check left first
+    # if looking for the right boundary, then check right first
+    if nums[left] == target:
+        return left
+    if nums[right] == target:
+        return right
     return -1
 
 ```
