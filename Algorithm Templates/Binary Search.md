@@ -14,7 +14,7 @@ def binarySearch(nums, target):
             right = mid
         else:
             #move left or right to the mid, based on which half you wanna continue to search
-            right = mid
+            left/ right = mid
     
     # in the end, the two pointers will sit besides each other
     # need to check the numbers they're pointing to
