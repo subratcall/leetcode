@@ -1,5 +1,8 @@
-dp[i][j]前i个物品，能不能组成和为j
-```
+本题如果用DFS，排列组合，共有2^n种方案，TC:O(n*2^n)
+
+DP的TC: O(mn)
+## dp[i][j]前i个物品，能不能组成和为j
+```py
 class Solution:
     """
     @param m: An integer m denotes the size of a backpack
@@ -27,8 +30,8 @@ class Solution:
                 return i
 ```
 
-dp[i][j]前i个物品，能把容量为j的背包装多满
-```
+## dp[i][j]前i个物品，能把容量为j的背包装多满
+```py
 class Solution:
     """
     @param m: An integer m denotes the size of a backpack
